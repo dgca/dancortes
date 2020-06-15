@@ -1,0 +1,35 @@
+@import "../../styles/variables.scss";
+
+$border-offset: 5px;
+$quote-flair-offset: 20px;
+
+.wrapper {
+  background-color: $pink;
+  color: $blue;
+  font-family: $font-heading;
+  font-size: 28px;
+  padding: 20px;
+  text-align: center;
+  text-shadow: -$border-offset $border-offset 0 $yellow;
+}
+
+.borderWrapper {
+  border: $border-offset solid $blue;
+  box-shadow: -$border-offset $border-offset 0 0 $yellow,
+    -$border-offset $border-offset 0 0 $yellow inset;
+  padding: 60px;
+}
+
+.quote {
+  font-size: 2em;
+  position: absolute;
+  top: 10px;
+}
+
+.quotePre {
+  left: 20px;
+}
+
+.quotePost {
+  right: 20px;
+}

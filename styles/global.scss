@@ -1,0 +1,49 @@
+@import "../styles/variables.scss";
+
+*,
+*::before,
+*::after {
+  position: relative;
+}
+
+:root {
+  --gray: #{$gray};
+  --yellow: #{$yellow};
+  --blue: #{$blue};
+  --red: #{$red};
+  --pink: #{$pink};
+  --black: #{$black};
+  --white: #{$white};
+  --font-heading: #{$font-heading};
+  --font-body: #{$font-body};
+  --font-code: #{$font-code};
+  font-size: 10px;
+}
+
+body {
+  font-size: 2rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $font-heading;
+  font-weight: 800;
+}
+
+body {
+  color: $black;
+  font-family: $font-body;
+  position: relative;
+}
+
+code {
+  font-family: $font-code;
+}
+
+p {
+  line-height: 1.8;
+}
