@@ -1,11 +1,12 @@
+import { useState } from "react";
 import styled, { css } from "styled-components";
-import { useRouter } from "next/router";
 import Layout from "../../components/Layout/Layout.react";
 import {
   Container,
   Heading,
   Paragraph,
 } from "../../components/MainPageTypeset/MainPageTypeset.react";
+import FAIcon from "../../components/FAIcon/FAIcon.react";
 
 const Form = styled.form`
   margin: 4rem 0;
@@ -53,6 +54,41 @@ const Button = styled.button`
   }
 `;
 
+const Message = styled.p`
+  background-color: var(--pink);
+  border-radius: 0.5em;
+  font-family: var(--font-code);
+  font-size: 1.6rem;
+  padding: 1em 1.5em;
+
+  ${(props) =>
+    props.type === "error" &&
+    css`
+      background-color: white;
+      border: 1px solid var(--red);
+    `}
+`;
+
+const LoadingBg = styled.div`
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.5);
+  bottom: 0;
+  display: flex;
+  font-size: 4rem;
+  justify-content: center;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 1;
+`;
+
+const Loading = () => (
+  <LoadingBg>
+    <FAIcon icon="spinner" pulse />
+  </LoadingBg>
+);
+
 const fields = {
   email: "email",
   firstname: "firstname",
@@ -60,10 +96,11 @@ const fields = {
   message: "message",
 };
 
-async function handleSubmit(e) {
-  e.preventDefault();
+async function handleSubmit({ event, onStart, onSuccess, onError, onEnd }) {
+  event.preventDefault();
+  onStart();
   const data = Object.entries(fields).reduce((acc, [property, name]) => {
-    const value = e.target[name].value;
+    const value = event.target[name].value;
     if (!value) {
       throw Error(
         "Form field with empty value found. All fields are required."
@@ -86,17 +123,24 @@ async function handleSubmit(e) {
       }),
     });
 
-    const payload = res.json();
+    const payload = await res.json();
 
     if (!res.ok) {
-      throw Error(payload.error);
+      throw payload;
     }
+
+    onSuccess(payload);
   } catch (err) {
-    console.warn(err);
+    onError(err);
+  } finally {
+    onEnd();
   }
 }
 
 const Contact = () => {
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isPending, setIsPending] = useState(false);
+  const [error, setError] = useState(null);
   return (
     <Layout title="Contact">
       <Container>
@@ -112,35 +156,65 @@ const Contact = () => {
           partner, or want to do a cross country bike ride, hit me up and I'll
           be in touch as soon as I can.
         </Paragraph>
-        <Form onSubmit={handleSubmit}>
-          <Field>
-            <Label>Email</Label>
-            <Input
-              type="email"
-              name={fields.email}
-              placeholder="hello@world.com"
-              required
-            />
-          </Field>
-          <Field>
-            <Label>First name</Label>
-            <Input name={fields.firstname} placeholder="Phoebe" required />
-          </Field>
-          <Field>
-            <Label>Last name</Label>
-            <Input name={fields.lastname} placeholder="Bean" required />
-          </Field>
-          <Field>
-            <Label>Message</Label>
-            <Input
-              as="textarea"
-              name={fields.message}
-              placeholder="Hi, I want to talk about hamnsters and how cute they are."
-              required
-            />
-          </Field>
-          <Button type="submit">Submit</Button>
-        </Form>
+        {error && !isSubmitted && <Message type="error">{error}</Message>}
+        {isSubmitted ? (
+          <Message>
+            Thanks for your submission! I'll be in touch soon :-)
+          </Message>
+        ) : (
+          <Form
+            onSubmit={(event) => {
+              handleSubmit({
+                event,
+                onStart() {
+                  setIsPending(true);
+                },
+                onSuccess() {
+                  setIsSubmitted(true);
+                },
+                onError(error) {
+                  if (error.errors?.[0]?.errorType === "INVALID_EMAIL") {
+                    setError("The email you entered is not valid.");
+                  } else {
+                    setError(error.message);
+                  }
+                },
+                onEnd() {
+                  setIsPending(false);
+                },
+              });
+            }}
+          >
+            {isPending && <Loading />}
+            <Field>
+              <Label>Email</Label>
+              <Input
+                type="email"
+                name={fields.email}
+                placeholder="hello@world.com"
+                required
+              />
+            </Field>
+            <Field>
+              <Label>First name</Label>
+              <Input name={fields.firstname} placeholder="Phoebe" required />
+            </Field>
+            <Field>
+              <Label>Last name</Label>
+              <Input name={fields.lastname} placeholder="Bean" required />
+            </Field>
+            <Field>
+              <Label>Message</Label>
+              <Input
+                as="textarea"
+                name={fields.message}
+                placeholder="Hi, I want to talk about hamnsters and how cute they are."
+                required
+              />
+            </Field>
+            <Button type="submit">Submit</Button>
+          </Form>
+        )}
       </Container>
     </Layout>
   );

@@ -1,5 +1,5 @@
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
+import { faMapMarkerAlt, faSpinner } from "@fortawesome/free-solid-svg-icons";
 import {
   faGithub,
   faLinkedin,
@@ -8,7 +8,14 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-library.add(faMapMarkerAlt, faGithub, faLinkedin, faCodepen, faTwitter);
+library.add(
+  faMapMarkerAlt,
+  faSpinner,
+  faGithub,
+  faLinkedin,
+  faCodepen,
+  faTwitter
+);
 
 const FAIcon = (props) => <FontAwesomeIcon {...props} />;
 

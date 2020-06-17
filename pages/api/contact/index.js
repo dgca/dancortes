@@ -21,48 +21,49 @@ export default async function contact(req, res) {
     return;
   }
 
-  const response = await fetch(url, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      submittedAt: Date.now(),
-      context: {
-        pageUri: pageUrl,
-        pageName: pageTitle,
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
       },
-      fields: [
-        {
-          name: "email",
-          value: email,
+      body: JSON.stringify({
+        submittedAt: Date.now(),
+        context: {
+          pageUri: pageUrl,
+          pageName: pageTitle,
         },
-        {
-          name: "firstname",
-          value: firstname,
-        },
-        {
-          name: "lastname",
-          value: lastname,
-        },
-        {
-          name: "message",
-          value: message,
-        },
-      ],
-    }),
-  });
-
-  const payload = await response.json();
-
-  if (payload.staus === "error") {
-    res.statusCode = 400;
-    res.json({
-      error: payload.message,
+        fields: [
+          {
+            name: "email",
+            value: email,
+          },
+          {
+            name: "firstname",
+            value: firstname,
+          },
+          {
+            name: "lastname",
+            value: lastname,
+          },
+          {
+            name: "message",
+            value: message,
+          },
+        ],
+      }),
     });
-    return;
-  }
 
-  res.statusCode = 200;
-  res.json({});
+    const payload = await response.json();
+
+    res.statusCode = payload.status === "error" ? 400 : 200;
+
+    res.json(payload);
+  } catch (err) {
+    res.statusCode = 500;
+
+    res.json({
+      message: "Something went wrong. Please try again.",
+    });
+  }
 }
