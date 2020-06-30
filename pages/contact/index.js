@@ -191,7 +191,7 @@ const Contact = () => {
               <Input
                 type="email"
                 name={fields.email}
-                placeholder="hello@world.com"
+                placeholder="phoebe@example.com"
                 required
               />
             </Field>
@@ -208,7 +208,7 @@ const Contact = () => {
               <Input
                 as="textarea"
                 name={fields.message}
-                placeholder="Hi, I want to talk about hamnsters and how cute they are."
+                placeholder="Hi, let's build something."
                 required
               />
             </Field>

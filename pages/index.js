@@ -7,6 +7,27 @@ import Layout from "../components/Layout/Layout.react";
 import QuoteBox from "../components/QuoteBox/QuoteBox.react";
 import SkillsList from "../components/SkillsList/SkillsList.react";
 import Hero from "../components/Hero/Hero.react";
+import CyclicalContent from "../components/CyclicalContent/CyclicalContent.react";
+
+const quotes = [
+  <p>
+    Dan is always up for a challenge and willing to help out on just about
+    anything. I appreciate being able to bounce ideas and code changes off of
+    him.
+  </p>,
+  <p>
+    You can usually point to Dan's code as a good example for just about
+    anything.
+  </p>,
+  <p>
+    Dan is a great technical leader. He's a talented developer with a rare
+    skillset that also makes him a good teacher.
+  </p>,
+  <p>
+    Dan consistently impresses me with his encyclopedia-like knowledge of front
+    end.
+  </p>,
+];
 
 export default function Home() {
   return (
@@ -32,8 +53,7 @@ export default function Home() {
           </Paragraph>
         </Container>
         <QuoteBox>
-          Dan is a great technical leader. He's a talented developer with a rare
-          skillset that also makes him a good teacher.
+          <CyclicalContent items={quotes} />
         </QuoteBox>
         <SkillsList
           heading="Some things I'm good at"

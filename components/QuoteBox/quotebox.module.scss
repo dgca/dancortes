@@ -11,6 +11,10 @@ $quote-flair-offset: 20px;
   padding: 20px;
   text-align: center;
   text-shadow: -$border-offset $border-offset 0 $yellow;
+
+  * {
+    line-height: inherit;
+  }
 }
 
 .borderWrapper {
