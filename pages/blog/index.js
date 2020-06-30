@@ -1,4 +1,5 @@
-import styled, { css } from "styled-components";
+import Link from "next/link";
+
 import Layout from "../../components/Layout/Layout.react";
 import {
   Container,
@@ -6,25 +7,37 @@ import {
   Paragraph,
 } from "../../components/MainPageTypeset/MainPageTypeset.react";
 
-const Blog = () => {
+import getBlogsList from "../../utils/getBlogList";
+
+export default function Blog({ blogsList }) {
   return (
     <Layout title="Blog">
       <Container>
-        <Heading>Blog</Heading>
-        <Paragraph>
-          Okay, so first things first, I'm probably not looking to switch jobs.
-          That said, if you have an opportunity I <em>must</em> hear about, feel
-          free to reach out.
-        </Paragraph>
-        <Paragraph>
-          Aside from that, if you need some freelance work done, need general
-          development help, want me to speak at your event, need a belay
-          partner, or want to do a cross country bike ride, hit me up and I'll
-          be in touch as soon as I can.
-        </Paragraph>
+        <h1>Blog</h1>
+        <article>
+          <ul>
+            {blogsList.map(({ slug, date, title, excerpt }) => (
+              <li key={slug}>
+                <h2>
+                  <Link href={`/blog/${slug}`}>
+                    <a>{title}</a>
+                  </Link>
+                </h2>
+                <p>{excerpt}</p>
+                <p>{date}</p>
+              </li>
+            ))}
+          </ul>
+        </article>
       </Container>
     </Layout>
   );
-};
+}
 
-export default Blog;
+export async function getStaticProps() {
+  return {
+    props: {
+      blogsList: getBlogsList(),
+    },
+  };
+}
