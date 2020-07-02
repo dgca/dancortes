@@ -3,9 +3,9 @@ import styled, { css } from "styled-components";
 import Layout from "../../components/Layout/Layout.react";
 import {
   Container,
-  Heading,
   Paragraph,
 } from "../../components/MainPageTypeset/MainPageTypeset.react";
+import Heading from "../../components/Heading/Heading.react";
 import FAIcon from "../../components/FAIcon/FAIcon.react";
 
 const Form = styled.form`
@@ -22,7 +22,7 @@ const Label = styled.div`
   margin-bottom: 0.5em;
 `;
 
-const Input = styled.input.attrs((props) => ({
+const Input = styled.input.attrs(() => ({
   type: "text",
 }))`
   padding: 10px;

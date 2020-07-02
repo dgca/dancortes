@@ -1,31 +1,38 @@
 import Link from "next/link";
 
+import Markdown from "../../components/Markdown/Markdown.react";
 import Layout from "../../components/Layout/Layout.react";
-import {
-  Container,
-  Heading,
-  Paragraph,
-} from "../../components/MainPageTypeset/MainPageTypeset.react";
+import { Container } from "../../components/MainPageTypeset/MainPageTypeset.react";
+import Heading from "../../components/Heading/Heading.react";
 
 import getBlogsList from "../../utils/getBlogList";
 
-export default function Post({ blogsList }) {
-  console.log({ blogsList });
+export default function Post(props) {
+  globalThis.test = props;
+  const { post, prevPostHref, nextPostHref } = props;
+  const { title, content, date } = post;
   return (
-    <Layout title="Blog">
+    <Layout title={title}>
       <Container>
-        <h1>Post</h1>
+        <Heading align="left">{title}</Heading>
+        <Markdown source={content} />
       </Container>
     </Layout>
   );
 }
 
-export async function getStaticProps() {
+export async function getStaticProps(context) {
+  const { slug } = context.params;
+  const blogsList = getBlogsList();
+  const postIndex = blogsList.findIndex(
+    ({ slug: postSlug }) => slug === postSlug
+  );
+  const makePostHref = (slug = null) => slug && `/blog/${slug}`;
   return {
     props: {
-      post: {},
-      prev: {},
-      next: {},
+      post: blogsList[postIndex],
+      prevPostHref: makePostHref(blogsList[postIndex - 1]?.slug),
+      nextPostHref: makePostHref(blogsList[postIndex + 1]?.slug),
     },
   };
 }

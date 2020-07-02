@@ -19,6 +19,8 @@
     "prop-types": "^15.7.2",
     "react": "16.13.1",
     "react-dom": "16.13.1",
+    "react-markdown": "^4.3.1",
+    "react-syntax-highlighter": "^12.2.1",
     "sass": "^1.26.7",
     "styled-components": "^5.1.1"
   },
