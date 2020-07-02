@@ -1,13 +1,7 @@
 import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
 
-export const Container = styled.section`
-  padding: 60px 60px 80px;
-  margin: 0 auto;
-  max-width: 80rem;
-`;
-
-export const Heading = styled.h1`
+const Heading = styled.h1`
   font-size: 32px;
   text-align: center;
   line-height: 1.4;
@@ -24,6 +18,12 @@ export const Heading = styled.h1`
       `;
     }
   }}
+
+  ${({ align }) =>
+    align &&
+    css`
+      text-align: ${align};
+    `}
 `;
 
 Heading.propTypes = {
@@ -34,8 +34,4 @@ Heading.defaultProps = {
   align: "center",
 };
 
-export const Paragraph = styled.p`
-  &:not(:last-child) {
-    margin-bottom: 25px;
-  }
-`;
+export default Heading;
