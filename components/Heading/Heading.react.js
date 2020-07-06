@@ -2,12 +2,11 @@ import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
 
 const Heading = styled.h1`
-  font-size: 32px;
+  font-size: 3.2rem;
   text-align: center;
   line-height: 1.4;
   margin-bottom: 1.5em;
   max-width: 30ch;
-  text-transform: capitalize;
 
   ${({ align }) => {
     if (align === "center") {

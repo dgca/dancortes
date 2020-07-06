@@ -16,7 +16,7 @@ export default function Home() {
       <main>
         <Container>
           <Heading>
-            Front-end focused, full-stack adept, Javascript nerd
+            Front-End Focused, Full-Stack Adept, Javascript Nerd
           </Heading>
           <Paragraph>
             Hi, I'm Dan. I've been building digital products since 2012. In my
