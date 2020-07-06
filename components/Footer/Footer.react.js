@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import FAIcon from "../FAIcon/FAIcon.react";
 
+import { social } from "../../lib/constants";
+
 const Wrapper = styled.footer`
   align-items: center;
   background-color: var(--black);
@@ -22,22 +24,39 @@ const Links = styled.nav`
   }
 `;
 
+const FAIconAnchorWrapper = styled.a`
+  color: inherit;
+`;
+
+FAIconAnchorWrapper.defaultProps = {
+  target: "_blank",
+  rel: "noopener",
+};
+
 const Footer = () => (
   <Wrapper>
     <p>Dan Cortes © 2020</p>
     <Links>
       <ul>
         <li>
-          <FAIcon icon={["fab", "github"]} />
+          <FAIconAnchorWrapper href={social.github.url}>
+            <FAIcon icon={["fab", "github"]} />
+          </FAIconAnchorWrapper>
         </li>
         <li>
-          <FAIcon icon={["fab", "linkedin"]} />
+          <FAIconAnchorWrapper href={social.linkedIn.url}>
+            <FAIcon icon={["fab", "linkedin"]} />
+          </FAIconAnchorWrapper>
         </li>
         <li>
-          <FAIcon icon={["fab", "codepen"]} />
+          <FAIconAnchorWrapper href={social.codePen.url}>
+            <FAIcon icon={["fab", "codepen"]} />
+          </FAIconAnchorWrapper>
         </li>
         <li>
-          <FAIcon icon={["fab", "twitter"]} />
+          <FAIconAnchorWrapper href={social.twitter.url}>
+            <FAIcon icon={["fab", "twitter"]} />
+          </FAIconAnchorWrapper>
         </li>
       </ul>
     </Links>

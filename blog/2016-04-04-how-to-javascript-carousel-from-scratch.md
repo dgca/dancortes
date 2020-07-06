@@ -21,12 +21,16 @@ I wanted to keep the markup dead simple because, when I was starting out with we
 
 So, basically, I have a `div` with the `id` _fancy-carousel_, I put images in it, and the JavaScript does all the work for me. No data attributes or complicated markup structure. After everything is put together, it looks something like this:
 
+```dangerouslySetInnerHTML
 <p class="codepen" data-height="265" data-theme-id="light" data-default-tab="js,result" data-user="dgca" data-slug-hash="zqZqpN" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="Fancy Carousel">
   <span>See the Pen <a href="https://codepen.io/dgca/pen/zqZqpN">
   Fancy Carousel</a> by Daniel Cortes (<a href="https://codepen.io/dgca">@dgca</a>)
   on <a href="https://codepen.io">CodePen</a>.</span>
 </p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+```
+
+<br />
 
 So what’s happening is the JS finds our `div#fancy-carousel`, creates two new `div`s, each stacked on top of each other, and uses the top (as in z-order) one to house the controls—the previous and next arrows.
 

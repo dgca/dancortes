@@ -32,6 +32,11 @@ const Wrapper = styled.div`
     border-radius: 1rem;
     font-size: max(0.8em, 16px);
   }
+
+  blockquote {
+    border-left: 4px solid var(--gray);
+    padding-left: 2em;
+  }
 `;
 
 export default function Markdown({ source, className }) {
@@ -50,6 +55,9 @@ export default function Markdown({ source, className }) {
 }
 
 function CodeBlock({ value, language }) {
+  if (language === "dangerouslySetInnerHTML") {
+    return <div dangerouslySetInnerHTML={{ __html: value }} />;
+  }
   return (
     <SyntaxHighlighter language={language} style={tomorrow}>
       {value}
