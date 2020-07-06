@@ -1,20 +1,31 @@
 import Link from "next/link";
+import styled from "styled-components";
 
 import Markdown from "../../components/Markdown/Markdown.react";
 import Layout from "../../components/Layout/Layout.react";
 import { Container } from "../../components/MainPageTypeset/MainPageTypeset.react";
 import Heading from "../../components/Heading/Heading.react";
-
+import BlogPublishDate from "../../components/BlogPublishDate/BlogPublishDate.react";
 import getBlogsList from "../../utils/getBlogList";
 
+const BlogHeading = styled(Heading)`
+  margin-bottom: 1rem;
+`;
+
+const TitleDateWrapper = styled.div`
+  margin-bottom: 1.5em;
+`;
+
 export default function Post(props) {
-  globalThis.test = props;
   const { post, prevPostHref, nextPostHref } = props;
   const { title, content, date } = post;
   return (
     <Layout title={title}>
       <Container>
-        <Heading align="left">{title}</Heading>
+        <TitleDateWrapper>
+          <BlogHeading align="left">{title}</BlogHeading>
+          <BlogPublishDate date={date} />
+        </TitleDateWrapper>
         <Markdown source={content} />
       </Container>
     </Layout>
