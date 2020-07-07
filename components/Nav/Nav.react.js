@@ -1,11 +1,8 @@
 import React from "react";
 import Link from "next/link";
 import PropTypes from "prop-types";
-import classnames from "classnames";
 
-import styled from "styled-components";
-
-import styles from "./nav.module.scss";
+import styled, { css } from "styled-components";
 
 const Wrapper = styled.div`
   align-items: center;
@@ -25,7 +22,6 @@ const Wrapper = styled.div`
 const HomepageLink = styled.a`
   align-items: center;
   color: white;
-  cursor: pointer;
   display: flex;
   padding: 15px 0;
   text-decoration: none;
@@ -44,7 +40,6 @@ const LinksList = styled.ul`
 
 const LinkAnchor = styled.a`
   color: var(--red);
-  cursor: pointer;
   display: block;
   padding: 20px;
   text-decoration: none;
@@ -69,6 +64,14 @@ const LinkAnchor = styled.a`
   &:hover::before {
     width: 100%;
   }
+`;
+
+const LinkLetter = styled.span`
+  ${({ active }) =>
+    active &&
+    css`
+      color: var(--red);
+    `}
 `;
 
 const links = [
@@ -121,20 +124,15 @@ class LinkItem extends React.Component {
     const { name, path } = this.props;
     return (
       <li>
-        <Link href={path}>
+        <Link href={path} passHref>
           <LinkAnchor
             onMouseEnter={this.handleMouseEnter}
             onMouseLeave={this.handleMouseLeave}
           >
             {name.split("").map((char, i) => (
-              <span
-                key={i}
-                className={classnames({
-                  [styles.activeChar]: this.state.activeIndex === i,
-                })}
-              >
+              <LinkLetter key={i} active={this.state.activeIndex === i}>
                 {char}
-              </span>
+              </LinkLetter>
             ))}
           </LinkAnchor>
         </Link>
@@ -146,7 +144,7 @@ class LinkItem extends React.Component {
 const Nav = () => (
   <Wrapper>
     <h1>
-      <Link href="/">
+      <Link href="/" passHref>
         <HomepageLink>
           <Logo src="/images/logo.png" alt="" />
           Dan Cortes
