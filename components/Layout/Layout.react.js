@@ -20,11 +20,11 @@ const Children = styled.div`
   background-color: var(--white);
 `;
 
-const Layout = ({ children, hero, title = "Dan Cortes | Web Developer" }) => {
+const Layout = ({ children, hero, title = "Web Developer" }) => {
   return (
     <Main>
       <Head>
-        <title>{title}</title>
+        <title>Dan Cortes | {title}</title>
         <link
           href="https://fonts.googleapis.com/css?family=Fira+Code|Lora:400,400i,700,700i|Montserrat:700,800&display=swap"
           rel="stylesheet"

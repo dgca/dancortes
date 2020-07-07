@@ -2,17 +2,74 @@ import React from "react";
 import Link from "next/link";
 import PropTypes from "prop-types";
 import classnames from "classnames";
+
+import styled from "styled-components";
+
 import styles from "./nav.module.scss";
 
-const Logo = () => (
-  <img
-    className={styles.logo}
-    height="40"
-    width="40"
-    src="/images/logo.png"
-    alt=""
-  />
-);
+const Wrapper = styled.div`
+  align-items: center;
+  background-color: var(--black);
+  color: white;
+  display: flex;
+  font-family: var(--font-heading);
+  font-size: 24px;
+  font-weight: 800;
+  justify-content: space-between;
+  padding: 0 60px;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+`;
+
+const HomepageLink = styled.a`
+  align-items: center;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  padding: 15px 0;
+  text-decoration: none;
+`;
+
+const Logo = styled.img`
+  display: block;
+  height: 40px;
+  margin-right: 15px;
+  width: 40px;
+`;
+
+const LinksList = styled.ul`
+  display: flex;
+`;
+
+const LinkAnchor = styled.a`
+  color: var(--red);
+  cursor: pointer;
+  display: block;
+  padding: 20px;
+  text-decoration: none;
+
+  &::before {
+    background-color: currentColor;
+    bottom: 10px;
+    content: "";
+    display: block;
+    height: 5px;
+    left: 50%;
+    position: absolute;
+    transform: translateX(-50%);
+    transition: width 0.25s;
+    width: 0;
+  }
+
+  &:hover {
+    color: var(--white);
+  }
+
+  &:hover::before {
+    width: 100%;
+  }
+`;
 
 const links = [
   {
@@ -65,10 +122,7 @@ class LinkItem extends React.Component {
     return (
       <li>
         <Link href={path}>
-          <a
-            className={classnames(styles.link, {
-              [styles.linkActive]: this.state.hasHover,
-            })}
+          <LinkAnchor
             onMouseEnter={this.handleMouseEnter}
             onMouseLeave={this.handleMouseLeave}
           >
@@ -82,7 +136,7 @@ class LinkItem extends React.Component {
                 {char}
               </span>
             ))}
-          </a>
+          </LinkAnchor>
         </Link>
       </li>
     );
@@ -90,23 +144,23 @@ class LinkItem extends React.Component {
 }
 
 const Nav = () => (
-  <nav className={styles.wrapper}>
+  <Wrapper>
     <h1>
       <Link href="/">
-        <a className={styles.titleLink}>
-          <Logo className={styles.logo} />
+        <HomepageLink>
+          <Logo src="/images/logo.png" alt="" />
           Dan Cortes
-        </a>
+        </HomepageLink>
       </Link>
     </h1>
     <nav>
-      <ul className={styles.linksList}>
+      <LinksList>
         {links.map(({ name, path }, i) => (
           <LinkItem name={name} path={path} key={i} />
         ))}
-      </ul>
+      </LinksList>
     </nav>
-  </nav>
+  </Wrapper>
 );
 
 Nav.propTypes = {
