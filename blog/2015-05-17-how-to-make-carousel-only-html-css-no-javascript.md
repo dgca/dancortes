@@ -7,11 +7,12 @@ Recently, I've been working on a site that uses a CMS that's a bit limiting. I c
 
 The designs I'm working from included a carousel. I had some ideas of how I could make that work using CSS animations and the transform property, but that would leave me with a carousel that scrolled automatically and didn't allow for user input which wasn't really what I was looking for. After some thinking, I eneded up with a solution that uses absolute positioning and the _:target_ pseudo-selector to change the _z-index_ and _opacity_ of our carousel items to cycle through them. It looks something like this:
 
+```dangerouslySetInnerHTML
 <div class="carousel-wrapper" style="height: 400px;">
   <span class="hidden-target" id="target-item-1"></span>
   <span class="hidden-target" id="target-item-2"></span>
   <span class="hidden-target" id="target-item-3"></span>
-  <div class="carousel-item item-1 light" style="background: url(/assets/img/css-carousel/soccer.jpg) 50% 50% / cover;">
+  <div class="carousel-item item-1 light" style="background: url(/images/css-carousel/soccer.jpg) 50% 50% / cover;">
     <h2>This is the first item</h2>
     <p>Idque Caesaris facere voluntate liceret: sese habere. Qui ipsorum lingua Celtae, nostra Galli appellantur. Inmensae subtilitatis, obscuris et malesuada fames.</p>
     <a class="arrow arrow-prev" href="#target-item-3"></a>
@@ -23,13 +24,77 @@ The designs I'm working from included a carousel. I had some ideas of how I coul
     <a class="arrow arrow-prev" href="#target-item-1"></a>
     <a class="arrow arrow-next" href="#target-item-3"></a>
   </div>
-  <div class="carousel-item item-3 light" style="background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.4)), url(/assets/img/css-carousel/harbor.jpg) 50% 50% / cover;">
+  <div class="carousel-item item-3 light" style="background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.4)), url(/images/css-carousel/harbor.jpg) 50% 50% / cover;">
     <h2>And finally, the third</h2>
     <p>Quis aute iure reprehenderit in voluptate velit esse. Cum ceteris in veneratione tui montes, nascetur mus. Prima luce, cum quibus mons aliud  consensu ab eo. Quam temere in vitiis, legem sancimus haerentia. Sed haec quis possit intrepidus aestimare tellus.</p>
     <a class="arrow arrow-prev" href="#target-item-2"></a>
     <a class="arrow arrow-next" href="#target-item-1"></a>
   </div>
 </div>
+<style>
+.carousel-wrapper {
+  position: relative;
+  margin-bottom: 8px / 2;
+}
+.carousel-wrapper .carousel-item {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 25px 50px;
+  opacity: 0;
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}
+.carousel-wrapper .carousel-item .arrow {
+  position: absolute;
+  top: 0;
+  display: block;
+  width: 50px;
+  height: 100%;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  background: url("/images/css-carousel/carousel-arrow-dark.png") 50% 50%/20px no-repeat;
+}
+.carousel-wrapper .carousel-item .arrow.arrow-prev {
+  left: 0;
+}
+.carousel-wrapper .carousel-item .arrow.arrow-next {
+  right: 0;
+  -webkit-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+.carousel-wrapper .carousel-item.light {
+  color: white;
+}
+.carousel-wrapper .carousel-item.light .arrow {
+  background: url("/images/css-carousel/carousel-arrow-light.png") 50% 50%/20px no-repeat;
+}
+@media (max-width: 500px) {
+  .carousel-wrapper .carousel-item .arrow, .carousel-wrapper .carousel-item.light .arrow {
+    background-size: 10px;
+    background-position: 10px 50%;
+  }
+}
+.carousel-wrapper [id^="target-item"] {
+  display: none;
+}
+.carousel-wrapper .item-1 {
+  z-index: 2;
+  opacity: 1;
+}
+.carousel-wrapper *:target ~ .item-1 {
+  opacity: 0;
+}
+.carousel-wrapper #target-item-1:target ~ .item-1 {
+  opacity: 1;
+}
+.carousel-wrapper #target-item-2:target ~ .item-2, .carousel-wrapper #target-item-3:target ~ .item-3 {
+  z-index: 3;
+  opacity: 1;
+}
+</style>
+```
 
 Let's build one!
 
@@ -43,8 +108,7 @@ Because our individual carousel items will be _position: absolute_ (so we can st
 
 I'm also using inline CSS to set the background image of two of our _div.carousel-item_ elements to make them a little more vibrant, but we'll leave that out below so that our markup is more readable.
 
-{% highlight html %}
-
+```html
 <!--Here's our main wrapper.
 Since our carousel items get their size from their parent,
 we have to specify its height.-->
@@ -87,13 +151,13 @@ we have to specify its height.-->
     <a class="arrow arrow-next" href="#target-item-1"></a>
   </div>
 </div>
-{% endhighlight %}
+```
 
 That's it for our HTML. It's surprisingly light. The CSS (SCSS, in this case) is where the magic happens.
 
 ## The styles
 
-{% highlight scss wrap %}
+```scss
 /_ Here's where our carousel begins, with the main wrapper being
 relatively positioned, so that our absolutely positioned items are
 in the right place. _/
@@ -205,8 +269,6 @@ z-index: 3;
 opacity: 1;
 }
 }
-{% endhighlight %}
+```
 
 And that's it! You have a carousel that's fully functional and is 100% HTML and CSS! We only made a carousel with three items, but you can keep adding items, just make sure you add more target items, and you link up your arrow links correctly.
-
-I hope you enjoyed this. Let me know your thoughts or what you would've done differently on Twitter at [@ddggccaa](https://twitter.com/ddggccaa).

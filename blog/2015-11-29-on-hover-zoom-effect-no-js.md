@@ -9,8 +9,10 @@ I wondered if it was possible to use SCSS and Jade's for loops to pull this off 
 
 With a bit of work, I was able to put the following together. Note that the color overlays are just to show where the grid items are.
 
+```dangerouslySetInnerHTML
 <p data-height="450" data-theme-id="0" data-slug-hash="JYQvbj" data-default-tab="result" data-user="dgca" class='codepen'>See the Pen <a href='http://codepen.io/dgca/pen/JYQvbj/'>No-JS On-Hover Image Zoom</a> by Daniel Cortes (<a href='http://codepen.io/dgca'>@dgca</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
 <script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+```
 
 So what's different about this approach than the original inspiration? Using Jade and SCSS, this approach lets us change the grid size by changing just two numbers—a variable in the Jade markup, and a variable in the SCSS markup.
 

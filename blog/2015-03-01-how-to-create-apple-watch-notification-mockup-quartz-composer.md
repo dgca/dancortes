@@ -9,7 +9,10 @@ So, where do you fit into this post? Well, I created this Apple Watch notificati
 
 The base composition looks something like this:
 
-<img class="img-block" src="/assets/posts/2015-03-01-apple-watch-mockup/dan-app-mockup.gif">
+<figure>
+<img src="/images/blog/dan-app-mockup.gif">
+<figcaption><em>Apple Watch mockup demo</em></figcaption>
+</figure>
 
 If you're new to Quartz Composer and Origami, I wrote an [introductory guide](https://www.punchkickinteractive.com/blog/2014/04/01/quartz-composer-and-origami-tutorial-button-animation) about a year ago when Origami first came out. I recommend you go through it to get a feel for what Quartz Composer is, and what Origami brought to the table in terms of added functionality.
 
@@ -28,7 +31,7 @@ Okay, so at this point, you should've made some edits to the images, and we shou
 Extract the files and open up 'mockup.qtz'. You should see the following patches. Also, because Quartz Composer tends to be a bit on the heavy side in terms of processing, you probably want to stop your viewer.
 
 <figure>
-<a href="/assets/posts/2015-03-01-apple-watch-mockup/qc-1.png" target="_blank"><img src="/assets/posts/2015-03-01-apple-watch-mockup/qc-1.png"></a>
+<img src="/images/blog/qc-1.png">
 <figcaption><em>The only tidy screen we'll see today.</em></figcaption>
 </figure>
 
@@ -44,7 +47,7 @@ So, to break down what's going on here, I've clustered patches into gray notes. 
 Basically, when you tap anywhere on the Home Screen, we trigger the Short Look Notification animation. Then, after 2.25 seconds, we trigger the transition animation. Once the transition animation is done, we make all the assets scrollable. Finally, when you tap the 'Dismiss' button, we go back home and we can do it all again. Cool, huh?
 
 <figure>
-<a href="/assets/posts/2015-03-01-apple-watch-mockup/qc-2.png" target="_blank"><img src="/assets/posts/2015-03-01-apple-watch-mockup/qc-2.png"></a>
+<img src="/images/blog/qc-2.png">
 <figcaption><em>This reminds me of Charlie Kelly's 'Pepe Silvia' monologue.</em></figcaption>
 </figure>
 
@@ -53,7 +56,7 @@ Okay, so on the left and on the bottom, there are yellow notes. In these notes a
 Okay, let's swap out my DAN APP App Name for yours. Click the App Name Image patch, and click the Patch Inspector icon in the menu bar. In the inspector, you'll see a drop-down menu that reads 'Input Parameters'. Click the drop-down and select 'Settings'.
 
 <figure>
-<a href="/assets/posts/2015-03-01-apple-watch-mockup/qc-3.png" target="_blank"><img src="/assets/posts/2015-03-01-apple-watch-mockup/qc-3.png"></a>
+<img src="/images/blog/qc-3.png">
 <figcaption><em>Fun fact: Inspecting things is a great way to learn.</em></figcaption>
 </figure>
 
@@ -76,7 +79,7 @@ Since these patches are scrollable, and that scrollability is tied to the Long N
 The easiest way to fix this is to run your composition, click the Home Screen, and wait for the animations to run their course. When we get to the end, make a note of the Long Notification layer's Y Position.
 
 <figure>
-<a href="/assets/posts/2015-03-01-apple-watch-mockup/qc-4.png" target="_blank"><img src="/assets/posts/2015-03-01-apple-watch-mockup/qc-4.png"></a>
+<img src="/images/blog/qc-4.png">
 <figcaption><em>I'm following along and mine is broken too.</em></figcaption>
 </figure>
 
@@ -88,7 +91,7 @@ For example, my Long Notification's Y Position is -153.5. Now we need basic alge
 So I can do -153.5 + X = 148 and I get 301.5. So to fix my 'App Icon small' layer, I'm going to click the Math patch that's right under it, and adjust the 2nd value to 301.5.
 
 <figure>
-<a href="/assets/posts/2015-03-01-apple-watch-mockup/qc-4.png" target="_blank"><img src="/assets/posts/2015-03-01-apple-watch-mockup/qc-5.png"></a>
+<img src="/images/blog/qc-5.png">
 <figcaption><em>Mathing so hard right now.</em></figcaption>
 </figure>
 
@@ -101,7 +104,7 @@ Okay, so the Dismiss Button isn't really a button. We're placing an invisible ar
 Run your composition, click the Home Screen, and let the animations play out. With the Hit Area's Setup Mode turned on, you should be able to see it as a semi-transparent red rectangle. You might have to scroll to see it.
 
 <figure>
-<a href="/assets/posts/2015-03-01-apple-watch-mockup/qc-4.png" target="_blank"><img src="/assets/posts/2015-03-01-apple-watch-mockup/qc-6.png"></a>
+<img src="/images/blog/qc-6.png">
 <figcaption><em>That doesn't look right, let's scoot the Hit Area down.</em></figcaption>
 </figure>
 
