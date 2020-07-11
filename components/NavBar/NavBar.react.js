@@ -160,7 +160,12 @@ const LinksNav = () => {
         <FaIcon icon={isOpen ? "times" : "bars"} fixedWidth />
       </ToggleButton>
       <NavWrapper isOpen={isOpen}>
-        <ul onClick={() => setIsOpen(false)}>
+        <ul
+          onClick={(e) => {
+            e.target.blur();
+            setIsOpen(false);
+          }}
+        >
           {links.map(({ name, path }, i) => (
             <LinkItem name={name} path={path} key={i} />
           ))}
@@ -177,7 +182,7 @@ class LinkItem extends React.Component {
     super();
     this.state = {
       hasHover: false,
-      activeIndex: 0,
+      activeIndex: null,
     };
   }
 
@@ -186,10 +191,14 @@ class LinkItem extends React.Component {
     if (!hasHover) {
       return;
     }
-    const newIndex =
-      activeIndex + 1 === this.props.name.length ? 0 : activeIndex + 1;
+    const current = activeIndex ?? 0;
+    const nextIndex = {
+      true: current + 1,
+      [activeIndex === null]: 0,
+      [current + 1 === this.props.name.length]: 0,
+    }.true;
     this.setState({
-      activeIndex: newIndex,
+      activeIndex: nextIndex,
     });
     setTimeout(this.cycleLetters, LinkItem.interval);
   };
@@ -204,7 +213,7 @@ class LinkItem extends React.Component {
   handleMouseLeave = () => {
     this.setState({
       hasHover: false,
-      activeIndex: 0,
+      activeIndex: null,
     });
   };
 
