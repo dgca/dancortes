@@ -7,18 +7,30 @@ import { atAndBelow, bp } from "../../styles/breakpoints";
 import Paragraph from "../Paragraph/Paragraph.react";
 
 const Wrapper = styled.div`
-  p {
+  p,
+  figure,
+  ul,
+  ol {
     margin-bottom: 2.5rem;
+  }
 
-    > code {
-      background-color: var(--black);
-      border-radius: 0.25em;
-      color: var(--yellow);
-      display: inline-block;
-      font-size: 0.9em;
-      line-height: 1em;
-      padding: 0.1em 0.2em;
-    }
+  p > code {
+    background-color: var(--black);
+    border-radius: 0.25em;
+    color: var(--yellow);
+    display: inline-block;
+    font-size: 0.9em;
+    line-height: 1em;
+    padding: 0.1em 0.2em;
+  }
+
+  ul {
+    list-style: disc;
+    list-style-position: inside;
+  }
+
+  li {
+    margin-bottom: 1rem;
   }
 
   a {
@@ -37,6 +49,18 @@ const Wrapper = styled.div`
   blockquote {
     border-left: 4px solid var(--gray);
     padding-left: 2em;
+  }
+
+  hr {
+    background-color: var(--blue);
+    border: 0;
+    border-radius: 4px;
+    height: 4px;
+    margin: 2rem 0;
+  }
+
+  figure {
+    text-align: center;
   }
 
   ${atAndBelow(

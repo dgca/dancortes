@@ -15,7 +15,7 @@ It also added frames for the iPhone 6, iPhone 6 Plus, and Apple Watch. Since the
 
 Here's a sneak peek at where I am so far. The idea is to make the whole thing loop so you don't have to stop and re-run the composition every time you want to see the notification. I'm not quite there yet.
 
-<img class="img-block" src="/assets/img/dan-app-mockup-preview.gif">
+<img class="img-block" src="/images/blog/dan-app-mockup-preview.gif">
 
 I've got the source files up on [Github](https://github.com/dgca/origami-apple-watch-mockup), in case you want to play around and see how it works.
 

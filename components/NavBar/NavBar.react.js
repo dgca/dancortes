@@ -19,11 +19,6 @@ const Wrapper = styled.div`
   padding: 0 6rem;
   position: sticky;
   top: 0;
-  /*
-   * For some reason, there's a 1px gap above the nav...
-   * @see: https://bugs.chromium.org/p/chromium/issues/detail?id=810352&q=sticky&colspec=ID%20Pri%20M%20Stars%20ReleaseBlock%20Component%20Status%20Owner%20Summary%20OS%20Modified
-   */
-  /* transform: translateY(-1px); */
   z-index: 2;
 
   ${atAndBelow(
