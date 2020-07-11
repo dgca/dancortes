@@ -2,6 +2,8 @@ import { useRef, useEffect, useState } from "react";
 import styled, { css } from "styled-components";
 
 const Item = styled.div`
+  align-items: center;
+  display: flex;
   opacity: 0;
   position: relative;
   transition: opacity 0.25s;
@@ -23,6 +25,14 @@ const Item = styled.div`
       transform: translateY(-50%) translateY(-0.25em);
     `}
 `;
+
+function ItemWrapper({ children, active, largestChild }) {
+  return (
+    <Item active={active} largestChild={largestChild}>
+      {children}
+    </Item>
+  );
+}
 
 export default function CyclicalContent({ items, intervalSpeed = 6000 }) {
   const intervalRef = useRef(null);
@@ -61,13 +71,5 @@ export default function CyclicalContent({ items, intervalSpeed = 6000 }) {
         </ItemWrapper>
       ))}
     </div>
-  );
-}
-
-function ItemWrapper({ children, active, largestChild }) {
-  return (
-    <Item active={active} largestChild={largestChild}>
-      {children}
-    </Item>
   );
 }

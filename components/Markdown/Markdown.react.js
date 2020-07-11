@@ -2,6 +2,7 @@ import ReactMarkdown from "react-markdown/with-html";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { tomorrow } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import styled from "styled-components";
+import { atAndBelow, bp } from "../../styles/breakpoints";
 
 import Paragraph from "../Paragraph/Paragraph.react";
 
@@ -37,6 +38,13 @@ const Wrapper = styled.div`
     border-left: 4px solid var(--gray);
     padding-left: 2em;
   }
+
+  ${atAndBelow(
+    bp.s,
+    (css) => css`
+      font-size: 0.8em;
+    `
+  )}
 `;
 
 export default function Markdown({ source, className }) {

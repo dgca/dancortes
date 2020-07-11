@@ -1,24 +1,69 @@
 import React from "react";
 import PropTypes from "prop-types";
-import classnames from "classnames";
-import styles from "./quotebox.module.scss";
+import styled, { css } from "styled-components";
 
-const QuoteBox = ({ as: Wrapper = "blockquote", children, quotes = true }) => (
-  <Wrapper className={styles.wrapper}>
-    <div className={styles.borderWrapper}>
-      {quotes && (
-        <span className={classnames(styles.quote, styles.quotePre)}>“</span>
-      )}
+import { atAndBelow, bp } from "../../styles/breakpoints";
+
+const borderOffset = "5px";
+
+const Wrapper = styled.blockquote`
+  background-color: var(--pink);
+  color: var(--blue);
+  font-family: var(--font-heading);
+  font-size: 1.4em;
+  padding: 6rem;
+  text-align: center;
+  text-shadow: -${borderOffset} ${borderOffset} 0 var(--yellow);
+
+  * {
+    line-height: inherit;
+  }
+
+  .border-wrapper {
+    border: ${borderOffset} solid var(--blue);
+    box-shadow: -${borderOffset} ${borderOffset} 0 0 var(--yellow),
+      -${borderOffset} ${borderOffset} 0 0 var(--yellow) inset;
+    padding: 6rem;
+  }
+
+  .quote {
+    font-size: 2em;
+    position: absolute;
+    top: 10px;
+  }
+
+  .quote-pre {
+    left: 20px;
+  }
+
+  .quote-post {
+    right: 20px;
+  }
+
+  ${atAndBelow(
+    bp.s,
+    (css) => css`
+      font-size: 1em;
+      padding: 3rem;
+
+      .border-wrapper {
+        padding: 4rem 2rem;
+      }
+    `
+  )}
+`;
+
+const QuoteBox = ({ children, quotes = true }) => (
+  <Wrapper>
+    <div className="border-wrapper">
+      {quotes && <span className="quote quote-pre">“</span>}
       {children}
-      {quotes && (
-        <span className={classnames(styles.quote, styles.quotePost)}>”</span>
-      )}
+      {quotes && <span className="quote quote-post">”</span>}
     </div>
   </Wrapper>
 );
 
 QuoteBox.propTypes = {
-  as: PropTypes.string,
   children: PropTypes.oneOfType([
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node),

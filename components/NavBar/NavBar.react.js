@@ -23,8 +23,8 @@ const Wrapper = styled.div`
    * For some reason, there's a 1px gap above the nav...
    * @see: https://bugs.chromium.org/p/chromium/issues/detail?id=810352&q=sticky&colspec=ID%20Pri%20M%20Stars%20ReleaseBlock%20Component%20Status%20Owner%20Summary%20OS%20Modified
    */
-  transform: translateY(-1px);
-  z-index: 1;
+  /* transform: translateY(-1px); */
+  z-index: 2;
 
   ${atAndBelow(
     bp.s,
@@ -63,9 +63,17 @@ const ToggleButton = styled.button`
   border-radius: 0.25em;
   border: 1px solid var(--red);
   color: var(--red);
+  display: none;
   font-size: 1em;
   outline: 0;
   padding: 0.15em 0.25em;
+
+  ${atAndBelow(
+    bp.s,
+    (css) => css`
+      display: block;
+    `
+  )}
 `;
 
 const NavWrapper = styled.nav`
@@ -165,10 +173,13 @@ const LinksNav = () => {
 class LinkItem extends React.Component {
   static interval = 200;
 
-  state = {
-    hasHover: false,
-    activeIndex: 0,
-  };
+  constructor() {
+    super();
+    this.state = {
+      hasHover: false,
+      activeIndex: 0,
+    };
+  }
 
   cycleLetters = () => {
     const { hasHover, activeIndex } = this.state;

@@ -1,14 +1,24 @@
 import { useMemo } from "react";
-import {
-  Container,
-  Paragraph,
-} from "../components/MainPageTypeset/MainPageTypeset.react";
+import styled, { css } from "styled-components";
+import { Container } from "../components/MainPageTypeset/MainPageTypeset.react";
 import Heading from "../components/Heading/Heading.react";
 import Layout from "../components/Layout/Layout.react";
 import QuoteBox from "../components/QuoteBox/QuoteBox.react";
 import SkillsList from "../components/SkillsList/SkillsList.react";
 import Hero from "../components/Hero/Hero.react";
 import CyclicalContent from "../components/CyclicalContent/CyclicalContent.react";
+
+export const Paragraph = styled.p`
+  &:not(:last-child) {
+    margin-bottom: 25px;
+  }
+
+  ${({ small }) =>
+    small &&
+    css`
+      font-size: 0.9em;
+    `}
+`;
 
 export default function Home() {
   return (
@@ -29,8 +39,18 @@ export default function Home() {
             pleasure to use.
           </Paragraph>
           <Paragraph>
-            But don't take my word for it! Here's what folks who have worked
-            extensively with me have had to say:
+            Aside from a career, buildling digital products is both a passion
+            and hobby of mine, and I'd like to think I've gotten pretty good at
+            it by now. But don't take my word my word for it, here's what folks
+            I've worked with have had to say!{" "}
+          </Paragraph>
+          <Paragraph small>
+            <i>
+              For real, I grabbed these quotes from some peer reviews I had
+              lying around. I've worked with some incredibly nice people over
+              the years
+            </i>
+            &nbsp;🤗
           </Paragraph>
         </Container>
         <QuoteBox>

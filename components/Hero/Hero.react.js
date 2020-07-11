@@ -5,11 +5,12 @@ import { bp, atAndBelow } from "../../styles/breakpoints";
 import FAIcon from "../FAIcon/FAIcon.react";
 
 const Wrapper = styled.section`
-  background-image: url("/images/hero.png");
+  background-image: url("/images/hero.jpg");
   background-position: left 50%;
   background-size: 100% auto;
   position: sticky;
   top: 0;
+  transform: translate3d(0, 0, 0);
 
   &::before {
     background-image: linear-gradient(-15deg, var(--pink) 50%, var(--blue) 0);
@@ -49,6 +50,20 @@ const Wrapper = styled.section`
   ${atAndBelow(
     bp.s,
     (css) => css`
+      h1 {
+        font-size: 3rem;
+        margin-bottom: 0.25em;
+      }
+
+      p {
+        font-size: 2rem;
+      }
+    `
+  )}
+
+  ${atAndBelow(
+    bp.xs,
+    (css) => css`
       background-size: cover;
 
       &::before {
@@ -63,15 +78,6 @@ const Wrapper = styled.section`
       .content {
         padding: 3rem;
         position: relative;
-      }
-
-      h1 {
-        font-size: 3rem;
-        margin-bottom: 0.25em;
-      }
-
-      p {
-        font-size: 2rem;
       }
     `
   )}
