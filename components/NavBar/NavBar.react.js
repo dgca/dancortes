@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import PropTypes from "prop-types";
-
 import styled, { css } from "styled-components";
+
+import FaIcon from "../FAIcon/FAIcon.react";
+
+import { bp, atAndBelow } from "../../styles/breakpoints";
 
 const Wrapper = styled.div`
   align-items: center;
@@ -10,13 +13,25 @@ const Wrapper = styled.div`
   color: white;
   display: flex;
   font-family: var(--font-heading);
-  font-size: 24px;
+  font-size: 2.4rem;
   font-weight: 800;
   justify-content: space-between;
-  padding: 0 60px;
+  padding: 0 6rem;
   position: sticky;
   top: 0;
+  /*
+   * For some reason, there's a 1px gap above the nav...
+   * @see: https://bugs.chromium.org/p/chromium/issues/detail?id=810352&q=sticky&colspec=ID%20Pri%20M%20Stars%20ReleaseBlock%20Component%20Status%20Owner%20Summary%20OS%20Modified
+   */
+  transform: translateY(-1px);
   z-index: 1;
+
+  ${atAndBelow(
+    bp.s,
+    (css) => css`
+      padding: 0 1.2rem;
+    `
+  )}
 `;
 
 const HomepageLink = styled.a`
@@ -25,6 +40,15 @@ const HomepageLink = styled.a`
   display: flex;
   padding: 15px 0;
   text-decoration: none;
+
+  ${atAndBelow(
+    bp.s,
+    (css) => css`
+      .my-name {
+        font-size: 0.8em;
+      }
+    `
+  )}
 `;
 
 const Logo = styled.img`
@@ -34,8 +58,43 @@ const Logo = styled.img`
   width: 40px;
 `;
 
-const LinksList = styled.ul`
-  display: flex;
+const ToggleButton = styled.button`
+  background-color: transparent;
+  border-radius: 0.25em;
+  border: 1px solid var(--red);
+  color: var(--red);
+  font-size: 1em;
+  outline: 0;
+  padding: 0.15em 0.25em;
+`;
+
+const NavWrapper = styled.nav`
+  ul {
+    display: flex;
+  }
+
+  ${atAndBelow(
+    bp.s,
+    (css) => css`
+      background-color: var(--black);
+      display: none;
+      padding-bottom: 1rem;
+      position: absolute;
+      right: 0;
+      top: 100%;
+      width: 100%;
+
+      ul {
+        flex-direction: column;
+      }
+
+      ${({ isOpen }) =>
+        isOpen &&
+        css`
+          display: block;
+        `}
+    `
+  )}
 `;
 
 const LinkAnchor = styled.a`
@@ -84,6 +143,24 @@ const links = [
     path: "/contact",
   },
 ];
+
+const LinksNav = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  return (
+    <>
+      <ToggleButton onClick={() => setIsOpen((currentState) => !currentState)}>
+        <FaIcon icon={isOpen ? "times" : "bars"} fixedWidth />
+      </ToggleButton>
+      <NavWrapper isOpen={isOpen}>
+        <ul>
+          {links.map(({ name, path }, i) => (
+            <LinkItem name={name} path={path} key={i} />
+          ))}
+        </ul>
+      </NavWrapper>
+    </>
+  );
+};
 
 class LinkItem extends React.Component {
   static interval = 200;
@@ -141,32 +218,26 @@ class LinkItem extends React.Component {
   }
 }
 
-const Nav = () => (
+const NavBar = () => (
   <Wrapper>
     <h1>
       <Link href="/" passHref>
         <HomepageLink>
           <Logo src="/images/logo.png" alt="" />
-          Dan Cortes
+          <span className="my-name">Dan Cortes</span>
         </HomepageLink>
       </Link>
     </h1>
-    <nav>
-      <LinksList>
-        {links.map(({ name, path }, i) => (
-          <LinkItem name={name} path={path} key={i} />
-        ))}
-      </LinksList>
-    </nav>
+    <LinksNav />
   </Wrapper>
 );
 
-Nav.propTypes = {
+NavBar.propTypes = {
   siteTitle: PropTypes.string,
 };
 
-Nav.defaultProps = {
+NavBar.defaultProps = {
   siteTitle: ``,
 };
 
-export default Nav;
+export default NavBar;

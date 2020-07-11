@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { bp, atAndBelow } from "../../styles/breakpoints";
 
 import FAIcon from "../FAIcon/FAIcon.react";
 
@@ -23,16 +24,19 @@ const Wrapper = styled.section`
     bottom: 0;
     color: white;
     font-family: var(--font-heading);
-    font-size: 24px;
     left: 0;
-    padding: 60px;
+    padding: 6rem;
     position: absolute;
     right: 0;
     top: 0;
   }
 
   h1 {
-    font-size: 60px;
+    font-size: 6rem;
+  }
+
+  p {
+    font-size: 2.4rem;
   }
 
   .hide {
@@ -41,6 +45,36 @@ const Wrapper = styled.section`
     overflow: hidden;
     width: 0;
   }
+
+  ${atAndBelow(
+    bp.s,
+    (css) => css`
+      background-size: cover;
+
+      &::before {
+        background-image: linear-gradient(-15deg, var(--blue), var(--purple));
+        bottom: 0;
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+      }
+
+      .content {
+        padding: 3rem;
+        position: relative;
+      }
+
+      h1 {
+        font-size: 3rem;
+        margin-bottom: 0.25em;
+      }
+
+      p {
+        font-size: 2rem;
+      }
+    `
+  )}
 `;
 
 const Hero = () => {

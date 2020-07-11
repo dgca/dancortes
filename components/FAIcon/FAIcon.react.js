@@ -1,5 +1,10 @@
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faMapMarkerAlt, faSpinner } from "@fortawesome/free-solid-svg-icons";
+import {
+  faMapMarkerAlt,
+  faSpinner,
+  faBars,
+  faTimes,
+} from "@fortawesome/free-solid-svg-icons";
 import {
   faGithub,
   faLinkedin,
@@ -9,11 +14,13 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 library.add(
-  faMapMarkerAlt,
-  faSpinner,
+  faBars,
+  faCodepen,
   faGithub,
   faLinkedin,
-  faCodepen,
+  faMapMarkerAlt,
+  faSpinner,
+  faTimes,
   faTwitter
 );
 

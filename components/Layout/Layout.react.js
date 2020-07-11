@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import Head from "next/head";
-import Nav from "../Nav/Nav.react";
+import NavBar from "../NavBar/NavBar.react";
 import Footer from "../Footer/Footer.react";
 
 import styled from "styled-components";
@@ -33,7 +33,7 @@ const Layout = ({ children, hero, title = "Web Developer" }) => {
       </Head>
       <Container>
         {hero}
-        <Nav />
+        <NavBar />
         <Children>{children}</Children>
         <Footer />
       </Container>
