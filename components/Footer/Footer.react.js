@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import FAIcon from "../FAIcon/FAIcon.react";
+import { atAndBelow, bp } from "../../styles/breakpoints";
 
 import { social } from "../../lib/constants";
 
@@ -10,7 +11,19 @@ const Wrapper = styled.footer`
   display: flex;
   font-family: var(--font-heading);
   justify-content: space-between;
-  padding: 60px;
+  padding: 6rem;
+
+  ${atAndBelow(
+    bp.s,
+    (css) => css`
+      flex-direction: column;
+      padding: 4rem 0;
+
+      p {
+        margin-bottom: 1rem;
+      }
+    `
+  )}
 `;
 
 const Links = styled.nav`

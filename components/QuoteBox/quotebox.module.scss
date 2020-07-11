@@ -1,16 +1,14 @@
-@import "../../styles/variables.scss";
-
 $border-offset: 5px;
 $quote-flair-offset: 20px;
 
 .wrapper {
-  background-color: $pink;
-  color: $blue;
-  font-family: $font-heading;
+  background-color: var(--pink);
+  color: var(--blue);
+  font-family: var(--font-heading);
   font-size: 28px;
   padding: 20px;
   text-align: center;
-  text-shadow: -$border-offset $border-offset 0 $yellow;
+  text-shadow: -$border-offset $border-offset 0 var(--yellow);
 
   * {
     line-height: inherit;
@@ -18,9 +16,9 @@ $quote-flair-offset: 20px;
 }
 
 .borderWrapper {
-  border: $border-offset solid $blue;
-  box-shadow: -$border-offset $border-offset 0 0 $yellow,
-    -$border-offset $border-offset 0 0 $yellow inset;
+  border: $border-offset solid var(--blue);
+  box-shadow: -$border-offset $border-offset 0 0 var(--yellow),
+    -$border-offset $border-offset 0 0 var(--yellow) inset;
   padding: 60px;
 }
 

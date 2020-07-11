@@ -12,7 +12,7 @@ import CyclicalContent from "../components/CyclicalContent/CyclicalContent.react
 
 export default function Home() {
   return (
-    <Layout hero={<Hero />} title="Dan Cortes | Web Developer">
+    <Layout hero={<Hero />}>
       <main>
         <Container>
           <Heading>
