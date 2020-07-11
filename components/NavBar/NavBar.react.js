@@ -160,7 +160,7 @@ const LinksNav = () => {
         <FaIcon icon={isOpen ? "times" : "bars"} fixedWidth />
       </ToggleButton>
       <NavWrapper isOpen={isOpen}>
-        <ul>
+        <ul onClick={() => setIsOpen(false)}>
           {links.map(({ name, path }, i) => (
             <LinkItem name={name} path={path} key={i} />
           ))}
