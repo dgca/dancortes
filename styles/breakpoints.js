@@ -14,7 +14,7 @@
 
 import { css } from "styled-components";
 
-const xs = "450px";
+const xs = "500px";
 const s = "768px";
 const m = "1170px";
 const l = "1440px";

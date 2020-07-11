@@ -1,10 +1,18 @@
 import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
+import { atAndBelow, bp } from "../../styles/breakpoints";
 
 export const Container = styled.section`
-  padding: 60px 60px 80px;
+  padding: 6rem 6rem 8rem;
   margin: 0 auto;
   max-width: 80rem;
+
+  ${atAndBelow(
+    bp.s,
+    (css) => css`
+      padding: 3rem 3rem 4rem;
+    `
+  )}
 `;
 
 export const Heading = styled.h1`
@@ -33,9 +41,3 @@ Heading.propTypes = {
 Heading.defaultProps = {
   align: "center",
 };
-
-export const Paragraph = styled.p`
-  &:not(:last-child) {
-    margin-bottom: 25px;
-  }
-`;

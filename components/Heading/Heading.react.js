@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
+import { atAndBelow, bp } from "../../styles/breakpoints";
 
 const Heading = styled.h1`
   font-size: 3.2rem;
@@ -23,6 +24,13 @@ const Heading = styled.h1`
     css`
       text-align: ${align};
     `}
+
+  ${atAndBelow(
+    bp.s,
+    (css) => css`
+      font-size: 2.4rem;
+    `
+  )}
 `;
 
 Heading.propTypes = {

@@ -5,7 +5,14 @@ import { bp, atAndBelow } from "../../styles/breakpoints";
 const Wrapper = styled.div`
   background-color: var(--yellow);
   font-family: var(--font-heading);
-  padding: 60px;
+  padding: 6rem;
+
+  ${atAndBelow(
+    bp.s,
+    (css) => css`
+      padding: 4rem 3rem;
+    `
+  )}
 `;
 
 const Heading = styled.div`
@@ -42,6 +49,7 @@ const Items = styled.ul`
   ${atAndBelow(
     bp.s,
     (css) => css`
+      margin-bottom: 3rem;
       width: 100%;
     `
   )}

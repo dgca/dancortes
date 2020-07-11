@@ -16,8 +16,10 @@ const Container = styled.div`
   width: 100%;
 `;
 
-const Children = styled.div`
+const NonHeroContent = styled.div`
   background-color: var(--white);
+  transform: translate3d(0, 0, 0);
+  z-index: 1;
 `;
 
 const Layout = ({ children, hero, title = "Web Developer" }) => {
@@ -33,9 +35,11 @@ const Layout = ({ children, hero, title = "Web Developer" }) => {
       </Head>
       <Container>
         {hero}
-        <NavBar />
-        <Children>{children}</Children>
-        <Footer />
+        <NonHeroContent>
+          <NavBar />
+          {children}
+          <Footer />
+        </NonHeroContent>
       </Container>
     </Main>
   );
