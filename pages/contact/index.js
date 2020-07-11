@@ -1,11 +1,9 @@
 import { useState } from "react";
 import styled, { css } from "styled-components";
 import Layout from "../../components/Layout/Layout.react";
-import {
-  Container,
-  Paragraph,
-} from "../../components/MainPageTypeset/MainPageTypeset.react";
+import { Container } from "../../components/MainPageTypeset/MainPageTypeset.react";
 import Heading from "../../components/Heading/Heading.react";
+import Paragraph from "../../components/Paragraph/Paragraph.react";
 import FAIcon from "../../components/FAIcon/FAIcon.react";
 
 const Form = styled.form`
