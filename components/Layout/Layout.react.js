@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { NextSeo } from "next-seo";
 import NavBar from "../NavBar/NavBar.react";
 import Footer from "../Footer/Footer.react";
+import { hostname } from "../../lib/constants";
 
 import styled from "styled-components";
 
@@ -30,9 +31,7 @@ const Layout = ({
   description = `Hi, I'm Dan Cortes, a web developer who focuses on front-end, JavaScript, and React. Here's where I write about those things (and more).`,
 }) => {
   const router = useRouter();
-  const canonical = `${process.env.NEXT_PUBLIC_HOSTNAME}${
-    router.asPath.split("?")[0]
-  }`;
+  const canonical = `${hostname}${router.asPath.split("?")[0]}`;
   return (
     <Main>
       <NextSeo
