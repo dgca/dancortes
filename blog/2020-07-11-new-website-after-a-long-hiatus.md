@@ -7,6 +7,8 @@ Holy moly, it's been 4 years since I wrote my last blog post. In short, I didn't
 
 A lot has changed for me since I last wrote anything. The biggest change is probably that I'm now the front-end lead at [Albert.io](https://www.albert.io/). I also got a hamster named Phoebe. She is an angel.
 
+That's all that changed. I lied about it being a lot.
+
 On the tech side, I've been working with React for 5 years now, and have a ton of stuff I'd love to write about React and the ecosystem. I've also picked up a lot of general knowledge about front-end dev, vanilla JS, Node, and more. All things that I'm very excited to write about.
 
 I've also put together some talks for Meetups here in Chicago, and I'm planning on recording them and putting them online as well.

@@ -22,7 +22,7 @@ export const Paragraph = styled.p`
 
 export default function Home() {
   return (
-    <Layout hero={<Hero />}>
+    <Layout hero={<Hero />} title="Dan Cortes | Web Developer">
       <main>
         <Container>
           <Heading>

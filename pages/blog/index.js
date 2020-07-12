@@ -32,7 +32,7 @@ const Excerpt = styled.p`
 
 export default function Blog({ blogsList }) {
   return (
-    <Layout title="Blog">
+    <Layout title="Dan Cortes | Blog">
       <Container>
         <Heading>Blog Posts</Heading>
         <div>

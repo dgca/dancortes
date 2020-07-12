@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
-import Head from "next/head";
+import { useRouter } from "next/router";
+import { NextSeo } from "next-seo";
 import NavBar from "../NavBar/NavBar.react";
 import Footer from "../Footer/Footer.react";
 
@@ -22,17 +23,37 @@ const NonHeroContent = styled.div`
   z-index: 1;
 `;
 
-const Layout = ({ children, hero, title = "Web Developer" }) => {
+const Layout = ({
+  children,
+  hero,
+  title,
+  description = `Hi, I'm Dan Cortes, a web developer who focuses on front-end, JavaScript, and React. Here's where I write about those things (and more).`,
+}) => {
+  const router = useRouter();
+  const canonical = `${process.env.NEXT_PUBLIC_HOSTNAME}${
+    router.asPath.split("?")[0]
+  }`;
   return (
     <Main>
-      <Head>
-        <title>Dan Cortes | {title}</title>
-        <link
-          href="https://fonts.googleapis.com/css?family=Fira+Code|Lora:400,400i,700,700i|Montserrat:700,800&display=swap"
-          rel="stylesheet"
-        />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+      <NextSeo
+        title={title}
+        description={description}
+        canonical={canonical}
+        openGraph={{
+          url: canonical,
+          images: [
+            {
+              url: "/images/og-image-default.jpg",
+              height: 630,
+              width: 1200,
+            },
+          ],
+        }}
+        twitter={{
+          handle: "@dan_cortes_",
+          cardType: "summary_large_image",
+        }}
+      />
       <Container>
         {hero}
         <NonHeroContent>
@@ -47,6 +68,7 @@ const Layout = ({ children, hero, title = "Web Developer" }) => {
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
+  title: PropTypes.string.isRequired,
 };
 
 export default Layout;
