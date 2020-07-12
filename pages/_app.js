@@ -1,5 +1,8 @@
+import { useEffect } from "react";
 import App from "next/app";
-import { ThemeProvider, createGlobalStyle } from "styled-components";
+import Router from "next/router";
+import { ThemeProvider } from "styled-components";
+import { pageview } from "../lib/gtag";
 
 // Set up FontAwesome
 import { config } from "@fortawesome/fontawesome-svg-core";
@@ -17,14 +20,22 @@ const theme = {
   },
 };
 
-export default class MyApp extends App {
-  render() {
-    const { Component, pageProps } = this.props;
-    return (
-      <ThemeProvider theme={theme}>
-        <GlobalStyle />
-        <Component {...pageProps} />
-      </ThemeProvider>
-    );
-  }
-}
+const MyApp = ({ Component, pageProps }) => {
+  useEffect(() => {
+    const handleRouteChange = (url) => {
+      pageview(url);
+    };
+    Router.events.on("routeChangeComplete", handleRouteChange);
+    return () => {
+      Router.events.off("routeChangeComplete", handleRouteChange);
+    };
+  }, []);
+  return (
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      <Component {...pageProps} />
+    </ThemeProvider>
+  );
+};
+
+export default MyApp;

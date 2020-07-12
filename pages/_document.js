@@ -1,5 +1,6 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
 import { ServerStyleSheet } from "styled-components";
+import { GA_TRACKING_ID } from "../lib/gtag";
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx) {
@@ -31,7 +32,29 @@ export default class MyDocument extends Document {
   render() {
     return (
       <Html lang="en">
-        <Head />
+        <Head>
+          <link
+            href="https://fonts.googleapis.com/css?family=Fira+Code|Lora:400,400i,700,700i|Montserrat:700,800&display=swap"
+            rel="stylesheet"
+          />
+          <link rel="icon" href="/favicon.ico" />
+          <script
+            async
+            src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
+          />
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_TRACKING_ID}', {
+              page_path: window.location.pathname,
+            });
+          `,
+            }}
+          />
+        </Head>
         <body>
           <Main />
           <NextScript />

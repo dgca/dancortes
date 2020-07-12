@@ -140,7 +140,7 @@ const Contact = () => {
   const [isPending, setIsPending] = useState(false);
   const [error, setError] = useState(null);
   return (
-    <Layout title="Contact">
+    <Layout title="Dan Cortes | Contact">
       <Container>
         <Heading>Wanna talk? Hit me up!</Heading>
         <Paragraph>
