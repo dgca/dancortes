@@ -29,6 +29,7 @@ const Layout = ({
   hero,
   title,
   description = `Hi, I'm Dan Cortes, a web developer who focuses on front-end, JavaScript, and React. Here's where I write about those things (and more).`,
+  ogType = "website",
 }) => {
   const router = useRouter();
   const canonical = `${hostname}${router.asPath.split("?")[0]}`;
@@ -40,6 +41,7 @@ const Layout = ({
         canonical={canonical}
         openGraph={{
           url: canonical,
+          type: ogType,
           images: [
             {
               url: `${hostname}/images/og-image-default.jpg`,
