@@ -42,7 +42,7 @@ const Layout = ({
           url: canonical,
           images: [
             {
-              url: "/images/og-image-default.jpg",
+              url: `${hostname}/images/og-image-default.jpg`,
               height: 630,
               width: 1200,
             },
