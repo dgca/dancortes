@@ -30,7 +30,7 @@ const Layout = ({
   title,
   description = `Hi, I'm Dan Cortes, a web developer who focuses on front-end, JavaScript, and React. Here's where I write about those things (and more).`,
   ogType = "website",
-  ogImage = "og-image-default.jpg",
+  ogImage,
 }) => {
   const router = useRouter();
   const canonical = `${hostname}${router.asPath.split("?")[0]}`;
@@ -45,7 +45,9 @@ const Layout = ({
           type: ogType,
           images: [
             {
-              url: `${hostname}/images/og-images/${ogImage}`,
+              url: `${hostname}/images/og-images/${
+                ogImage || "og-image-default.jpg"
+              }`,
               height: 630,
               width: 1200,
             },

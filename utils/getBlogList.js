@@ -22,7 +22,7 @@ export default function getBlogList() {
         content,
         title,
         excerpt,
-        ogImage,
+        ogImage: ogImage ?? null,
       };
     });
 
