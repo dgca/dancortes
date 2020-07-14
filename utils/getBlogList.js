@@ -14,7 +14,7 @@ export default function getBlogList() {
       });
       const {
         content,
-        data: { title, excerpt },
+        data: { title, excerpt, ogImage },
       } = matter(file);
       return {
         slug,
@@ -22,6 +22,7 @@ export default function getBlogList() {
         content,
         title,
         excerpt,
+        ogImage,
       };
     });
 
