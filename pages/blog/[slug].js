@@ -18,9 +18,9 @@ const TitleDateWrapper = styled.div`
 
 export default function Post(props) {
   const { post, prevPostHref, nextPostHref } = props;
-  const { title, content, date } = post;
+  const { title, content, date, ogImage } = post;
   return (
-    <Layout title={title}>
+    <Layout title={title} ogImage={ogImage}>
       <Container>
         <TitleDateWrapper>
           <BlogHeading align="left">{title}</BlogHeading>

@@ -10,14 +10,22 @@ const Wrapper = styled.div`
   p,
   figure,
   ul,
-  ol {
+  ol pre,
+  h2 {
     margin-bottom: 2.5rem;
   }
 
-  p > code {
-    background-color: var(--black);
+  pre {
+    border-radius: 1rem;
+    font-size: max(0.8em, 16px);
+    margin-bottom: 2.5rem !important; /* Overrides react-syntax-highlighter */
+  }
+
+  p > code,
+  li > code {
+    background-color: #f5f7ff;
     border-radius: 0.25em;
-    color: var(--yellow);
+    color: #41496b;
     display: inline-block;
     font-size: 0.9em;
     line-height: 1em;
@@ -39,11 +47,6 @@ const Wrapper = styled.div`
     &:visited {
       color: var(--purple);
     }
-  }
-
-  pre {
-    border-radius: 1rem;
-    font-size: max(0.8em, 16px);
   }
 
   blockquote {
@@ -80,6 +83,7 @@ export default function Markdown({ source, className }) {
         renderers={{
           code: CodeBlock,
           paragraph: Paragraph,
+          link: Anchor,
         }}
       />
     </Wrapper>
@@ -94,5 +98,13 @@ function CodeBlock({ value, language }) {
     <SyntaxHighlighter language={language} style={tomorrow}>
       {value}
     </SyntaxHighlighter>
+  );
+}
+
+function Anchor({ href, children }) {
+  return (
+    <a href={href} target="_blank" rel="noopener">
+      {children}
+    </a>
   );
 }

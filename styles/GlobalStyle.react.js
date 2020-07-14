@@ -25,6 +25,7 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     font-size: 2rem;
+    line-height: 1.6;
   }
 
   h1,
@@ -45,10 +46,6 @@ const GlobalStyle = createGlobalStyle`
 
   code {
     font-family: var(--font-code);
-  }
-
-  p {
-    line-height: 1.8;
   }
 `;
 
