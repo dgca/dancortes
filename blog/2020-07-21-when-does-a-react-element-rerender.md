@@ -17,9 +17,9 @@ So, what does this mean? Let's unpack this!
 ## Index
 
 - Elements and strict equality
-- What about state changes
+- Can we rerender assigned elements?
+- State changes and forceUpdate
 - Context
-- Cloning
 
 ## Elements and strict equality
 
