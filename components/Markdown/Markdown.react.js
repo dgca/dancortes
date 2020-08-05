@@ -95,7 +95,7 @@ function CodeBlock({ value, language }) {
     return <div dangerouslySetInnerHTML={{ __html: value }} />;
   }
   return (
-    <SyntaxHighlighter language={language} style={tomorrow}>
+    <SyntaxHighlighter showLineNumbers language={language} style={tomorrow}>
       {value}
     </SyntaxHighlighter>
   );
