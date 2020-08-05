@@ -60,7 +60,7 @@ function RenderCountLogger() {
   useEffect(() => {
     renderCountRef.current += 1;
   });
-  return <span>I've rendered {renderCountRef.current} times</span>;
+  return <span>I&apos;ve rendered {renderCountRef.current} times</span>;
 }
 
 const renderCountLoggerElement = <RenderCountLogger />;
