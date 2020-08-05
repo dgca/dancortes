@@ -162,6 +162,8 @@ In this example, we're once again using an inlined element and a cached element 
 ></iframe>
 ```
 
+<br />
+
 ## Workarounds
 
 So, say you find yourself in a scenario where you're working with cached React elements and you need them to rerender when their parents rerender. What can you do? Simple, just wrap your cached element with `React.cloneElement(el)`. This will clone the element, causing the equality check to return `false`, and your component will rerender normally.
