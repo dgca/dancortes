@@ -8,7 +8,7 @@ TL;DR: When a React component instance rerenders, React compares the elements in
 
 ---
 
-For some background, the impteus for this post is an issue we encountered at work a while back. We were running into an issue with React Router 3.x where a route component would rerender, but its children route components wouldn't. In other words...
+For some background, the impetus for this post is an issue we encountered at work a while back. We were running into an issue with React Router 3.x where a route component would rerender, but its children route components wouldn't. In other words...
 
 ```js
 <Router history={hashHistory}>
