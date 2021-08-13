@@ -14,7 +14,7 @@
     "@fortawesome/react-fontawesome": "^0.1.10",
     "classnames": "^2.2.6",
     "gray-matter": "^4.0.2",
-    "next": "9.4.4",
+    "next": "11.1.0",
     "next-seo": "^4.7.2",
     "node-fetch": "^2.6.0",
     "prop-types": "^15.7.2",
