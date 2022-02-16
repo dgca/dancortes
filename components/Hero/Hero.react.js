@@ -91,7 +91,7 @@ const Hero = () => {
         <p>
           Web Developer <span className="hide">located in</span>
           <br />
-          <FAIcon icon="map-marker-alt" /> Chicago, IL
+          <FAIcon icon="map-marker-alt" /> Denver, CO
         </p>
       </div>
     </Wrapper>

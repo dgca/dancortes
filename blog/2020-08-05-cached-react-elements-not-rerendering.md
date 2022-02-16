@@ -10,7 +10,7 @@ TL;DR: When a React component instance rerenders, React compares the elements in
 
 For some background, the impetus for this post is an issue we encountered at work a while back. We were running into an issue with React Router 3.x where a route component would rerender, but its children route components wouldn't. In other words...
 
-```js
+```jsx
 <Router history={hashHistory}>
   <Route
     path="/"
@@ -52,7 +52,7 @@ Let's look at what that means in practice. In the following code, we have two co
 - `<Demo />` - A demo component that has some state (`count`), a button to update the state and trigger a rerender, and two `RenderCountLogger` elements.
 - `<RenderCountLogger />` - A component that displays how many times it has rendered.
 
-```js
+```jsx
 import React, { useState, useRef, useEffect } from "react";
 
 function RenderCountLogger() {
@@ -83,7 +83,7 @@ export default function Demo() {
 
 We're rendering two instances of `<RenderCountLogger />`, one on line 17 (aka the "cached element") and one on line 19 (aka the "inlined element"). When we click the button and cause the `<Demo />` to rerender, what happens to the cached element and inlined element? Turns out that only the inlined element rerenders. You can see this behavior below.
 
-```dangerouslySetInnerHTML
+
 <iframe
   src="https://codesandbox.io/embed/01-strict-comparison-9w4nr?fontsize=14&hidenavigation=1&theme=dark&view=preview"
   style="width:100%; height:300px; border:0; border-radius: 4px; overflow:hidden;"
@@ -91,7 +91,7 @@ We're rendering two instances of `<RenderCountLogger />`, one on line 17 (aka th
   allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
   sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
 ></iframe>
-```
+
 
 <br />
 
@@ -105,7 +105,7 @@ Yes! While rerenders that happen up the element tree won't cause our cached elem
 
 It will also rerender normally if it's consuming context and the context provider's value changes. We can see this behavior below.
 
-```js
+```jsx
 import React, { useState, useContext, createContext } from "react";
 
 const TextContext = createContext();
@@ -152,7 +152,7 @@ export default function Demo() {
 
 In this example, we're once again using an inlined element and a cached element but, unlike before, _both_ elements rerender when we change the value of the context provider.
 
-```dangerouslySetInnerHTML
+
 <iframe
   src="https://codesandbox.io/embed/02-context-ey056?fontsize=14&hidenavigation=1&theme=dark&view=preview"
   style="width:100%; height:300px; border:0; border-radius: 4px; overflow:hidden;"
@@ -160,7 +160,6 @@ In this example, we're once again using an inlined element and a cached element 
   allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
   sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
 ></iframe>
-```
 
 <br />
 

@@ -1,4 +1,3 @@
-import Link from "next/link";
 import styled from "styled-components";
 
 import Markdown from "../../components/Markdown/Markdown.react";

@@ -48,7 +48,7 @@ FAIconAnchorWrapper.defaultProps = {
 
 const Footer = () => (
   <Wrapper>
-    <p>Dan Cortes © 2020</p>
+    <p>Dan Cortes © {new Date().getFullYear()}</p>
     <Links>
       <ul>
         <li>
