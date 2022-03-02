@@ -1,13 +1,12 @@
-import styled from "styled-components";
-
 import Layout from "../../../components/Layout/Layout.react";
-import { Container } from "../../../components/MainPageTypeset/MainPageTypeset.react";
-
-import CircleTextGenerator from '../../../projects/CircleTextGenerator/CircleTextGenerator'
+import CircleTextGenerator from "../../../projects/CircleTextGenerator/CircleTextGenerator";
 
 export default function Post() {
   return (
-    <Layout title='Circle Text Generator' ogImage={null}>
+    <Layout
+      title="Circle Text Generator"
+      ogImage="2022-02-15-front-end-mock-technical-interview.jpg"
+    >
       <CircleTextGenerator />
     </Layout>
   );
