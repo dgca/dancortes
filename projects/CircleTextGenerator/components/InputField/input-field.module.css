@@ -1,0 +1,21 @@
+.wrapper {
+  margin-bottom: 1em;
+}
+
+.label {
+  color: white;
+  display: block;
+  margin-bottom: 0.25em;
+  font-weight: bold;
+}
+
+.input {
+  width: 100%;
+  padding: 0.25em;
+  border: 0;
+  font-size: 1em;
+}
+
+.input[type="color"] {
+  height: 50px;
+}

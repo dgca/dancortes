@@ -1,0 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap");
+
+.wrapper {
+  font-family: "Source Code Pro";
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.char {
+  display: block;
+  position: absolute;
+  line-height: 1em;
+  transform-origin: bottom center;
+}
