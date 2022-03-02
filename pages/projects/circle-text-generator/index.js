@@ -5,7 +5,7 @@ export default function Post() {
   return (
     <Layout
       title="Circle Text Generator"
-      ogImage="2022-02-15-front-end-mock-technical-interview.jpg"
+      ogImage="project-circle-text-generator.jpg"
     >
       <CircleTextGenerator />
     </Layout>
