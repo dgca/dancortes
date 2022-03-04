@@ -69,7 +69,7 @@ export default function CircularTextGenerator() {
   const [fontColor, setFontColor] = useState("#FFFFFF");
   const [fontSize, setFontSize] = useState(30);
   const [text, setText] = useState(
-    "THIS TOOL WAS MADE BY → DAN CORTES • dancortes.dev • "
+    "EDIT THE TEXT BELOW → MAKE YOUR DREAMS COME TRUE • "
   );
   const [imageSize, setImageSize] = useState(340);
   const [image, setImage] = useState(null);
