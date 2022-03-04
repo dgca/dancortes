@@ -13,7 +13,7 @@ const Wrapper = styled.div`
   color: #202030;
   font-family: "Source Code Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
     Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  padding: 40px 16px;
+  padding: 40px 0;
   font-size: 20px;
 
   h1 {
@@ -23,16 +23,17 @@ const Wrapper = styled.div`
     font-size: 48px;
     font-family: serif;
     letter-spacing: 12px;
+    padding: 0 16px;
   }
 
-  p,
-  hr {
+  p {
     color: white;
     margin-bottom: 1.5em;
   }
 
   hr {
     border: 1px dashed white;
+    margin: 2.5em 0;
   }
 
   .boundary {
@@ -41,7 +42,7 @@ const Wrapper = styled.div`
     flex-direction: column;
     max-width: 500px;
     margin: 0 auto;
-    padding-bottom: 80px;
+    padding: 0 16px 80px;
   }
 
   .button {
@@ -96,16 +97,6 @@ export default function CircularTextGenerator() {
         <CircleImage src={image} size={imageSize} />
       </RenderedOutput>
       <div className="boundary">
-        <p>
-          This circle text generator lets you easily create an image of text
-          that follows the curve of a circle. You can put an image inside the
-          text for extra swag factor.
-        </p>
-        <p>
-          This tool works entirely in the browser, so the text and image you add
-          won't be shared with anyone. Enjoy.
-        </p>
-        <hr />
         <InputField
           label="Container size"
           value={containerSize}
@@ -176,6 +167,21 @@ export default function CircularTextGenerator() {
         >
           Download Image
         </button>
+        <hr />
+        <p>
+          This circle text generator lets you easily create an image of text
+          that follows the curve of a circle. You can put an image inside the
+          text for extra swag factor.
+        </p>
+        <p>
+          This tool works entirely in the browser, so the text and image you add
+          won't be shared with anyone.
+        </p>
+        <p>
+          If the container size is bigger than your screen size, the text will
+          appear to be cut off. Don't worry, when you download the image, it'll
+          all be there. Enjoy!
+        </p>
       </div>
     </Wrapper>
   );
