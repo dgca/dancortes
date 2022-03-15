@@ -7,7 +7,8 @@ Recently, I've been working on a site that uses a CMS that's a bit limiting. I c
 
 The designs I'm working from included a carousel. I had some ideas of how I could make that work using CSS animations and the transform property, but that would leave me with a carousel that scrolled automatically and didn't allow for user input which wasn't really what I was looking for. After some thinking, I eneded up with a solution that uses absolute positioning and the _:target_ pseudo-selector to change the _z-index_ and _opacity_ of our carousel items to cycle through them. It looks something like this:
 
-```dangerouslySetInnerHTML
+
+<div>
 <div class="carousel-wrapper" style="height: 400px;">
   <span class="hidden-target" id="target-item-1"></span>
   <span class="hidden-target" id="target-item-2"></span>
@@ -34,7 +35,7 @@ The designs I'm working from included a carousel. I had some ideas of how I coul
 <style>
 .carousel-wrapper {
   position: relative;
-  margin-bottom: 8px / 2;
+  margin-bottom: 20px;
 }
 .carousel-wrapper .carousel-item {
   position: absolute;
@@ -94,7 +95,7 @@ The designs I'm working from included a carousel. I had some ideas of how I coul
   opacity: 1;
 }
 </style>
-```
+</div>
 
 Let's build one!
 

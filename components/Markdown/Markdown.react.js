@@ -2,7 +2,7 @@ import ReactMarkdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { tomorrow } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import styled from "styled-components";
-import rehypeRaw from 'rehype-raw';
+import rehypeRaw from "rehype-raw";
 import { atAndBelow, bp } from "../../styles/breakpoints";
 
 import Paragraph from "../Paragraph/Paragraph.react";
@@ -96,7 +96,7 @@ function Code({ inline, children, className }) {
     return <code>{children}</code>;
   }
 
-  const language = className?.replace('language-', '') ?? '';
+  const language = className?.replace("language-", "") ?? "";
 
   if (language === "dangerouslySetInnerHTML") {
     return <div dangerouslySetInnerHTML={{ __html: children[0] }} />;
